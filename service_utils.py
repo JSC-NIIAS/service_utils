@@ -14,15 +14,15 @@ sigint_exit_code = 0
 
 # shell args
 description = 'Description of service. It will be used in argparse.'
-default_symbol = default_symbol
+default_symbol = '%'
 
 # configuration args
-config_key = 'c'
+config_key = '-c'
 default_config = None
 default_config_path = None
 
 # pid args
-pid_key = 'p'
+pid_key = '-p'
 pid_out_file = None
 
 # logging
@@ -38,17 +38,21 @@ parser = argparse.ArgumentParser(
     description=description)
 
 if config_key is not None and type(config_key) == str:
+    required = default_config is not None
+    print(required)
+    print(config_key)
     parser.add_argument(
         config_key,
         metavar='path_to_configuration_file',
-        required=(default_config is None),
+        required=required,
         help='Path to configuration file.')
 
 if pid_key is not None and type(pid_key) == str:
+    required = pid_out_file is not None
     parser.add_argument(
         pid_key,
         metavar='pid_file_name',
-        required=(pid_out_file is None),
+        required=required,
         help='Path to file which will contain pid of the process.')
 
 # start actions
@@ -57,26 +61,28 @@ args = parser.parse_args()
 
 # create pid file for closing application outside
 
-foldes = pid_out_file.split('/')[:-1] 
-pid_file_folder = '/'.join(folders[-1])
+if pid_out_file is not None:
+    folders = pid_out_file.split('/')[:-1] 
+    pid_file_folder = '/'.join(folders)
 
-if not os.path.exists(pid_file_folder):
-    os.makedirs(pid_out_file)
+    if not os.path.exists(pid_file_folder):
+        os.makedirs(pid_out_file)
 
-if args.p == default_symbol:
+if args.p == default_symbol or args.p is None:
     args.p = pid_out_file
 
-if args.p[-4:] != '.pid':
-    args.p = args.p + '.pid'
+if args.p is not None:
+    if args.p[-4:] != '.pid':
+        args.p = args.p + '.pid'
 
-with open(args.p, 'w') as pid_out_file:
-    pid_out_file.write('{}'.format(os.getpid()))
+    with open(args.p, 'w') as pid_out_file:
+        pid_out_file.write('{}'.format(os.getpid()))
 
 # config reading
 
 def get_config():
     data = configparser.ConfigParser()
-    if args.c == default_symbol:
+    if args.c == default_symbol or args.c is None:
         if default_config is not None:
             data = default_config
         if default_config_path is not None:

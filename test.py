@@ -1,4 +1,4 @@
-import service_utils.py
+import service_utils
 
 while True:
     print(input('write msg:'))
