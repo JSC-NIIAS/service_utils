@@ -1,0 +1,5 @@
+# editors
+*.swp
+
+# cache
+__pycache__/*
