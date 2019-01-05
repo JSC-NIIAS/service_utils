@@ -13,7 +13,7 @@ The most important thing for working with this library is a configuration file. 
 
 1. Simple: just copy service_utils.py in your repository
 2. Not so simple: use .gitsubmodules file in your repository like this:
-##### .gitsubmodules
+##### .gitmodules
 ```
 [submodule "service_utils"]
       path = modules/service_utils
