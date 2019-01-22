@@ -1,5 +1,7 @@
 # service_utils
 
+[![Build Status](https://travis-ci.com/Sid1057/service_utils.svg?branch=master)](https://travis-ci.com/Sid1057/service_utils)
+
 A simple python package for quick and easy microservices logging and configuration.
 
 ## Overview
