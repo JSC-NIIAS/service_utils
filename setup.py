@@ -15,13 +15,16 @@ classifiers = [
 
 setup(
     name='service_utils',
-    version='0.1b',
+    version='0.1.3b',
     description='Python Service Utilities',
     long_description=long_description,
+    long_description_content_type='text/markdown',
     author='Ivan Deylid',
     author_email='ivanov.dale@gmail.com',
     url='https://www.github.com/sid1057/service_utils/',
     packages=['service_utils'],
+    package_data={'': ['README.md']},
+    data_files=['README.md'],
     license='MIT',
     keywords=keywords,
     platforms=['linux'],

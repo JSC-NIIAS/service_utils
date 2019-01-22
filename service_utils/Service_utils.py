@@ -1,7 +1,6 @@
 # service requirements
 import os
 import logging
-import json
 import argparse
 import signal
 import sys
@@ -74,7 +73,7 @@ class Service_utils:
                 print('pid file path is None')
                 return
 
-            folders = pid_file_path.split('/')[:-1] 
+            folders = pid_file_path.split('/')[:-1]
             pid_file_folder = '/'.join(folders)
 
             if not os.path.exists(pid_file_folder) and pid_file_folder != '':
@@ -112,8 +111,8 @@ class Service_utils:
 
         def __set_signal_handlers(self):
             try:
-                signal_codes = self.__configuration['signal_termination'] 
-            except:
+                signal_codes = self.__configuration['signal_termination']
+            except BaseException:
                 return
             if signal_codes is None:
                 return
