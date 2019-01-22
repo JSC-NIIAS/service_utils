@@ -15,7 +15,7 @@ classifiers = [
 
 setup(
     name='service_utils',
-    version='0.1.3b',
+    version='0.1.4b',
     description='Python Service Utilities',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -29,4 +29,5 @@ setup(
     license='MIT',
     keywords=keywords,
     platforms=['linux'],
+    python_requires='>=3.4.0',
     classifiers=classifiers)
