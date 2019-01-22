@@ -12,4 +12,5 @@ try:
 except:
     pass
 
-print(greeting)
+while True:
+    logging.debug(input(greeting + ' : '))
