@@ -3,6 +3,13 @@ from distutils.core import setup
 with open('README.md') as readme:
     long_description = readme.read()
 
+    try:
+        import pypandoc
+        long_description = pypandoc.convert(long_description, 'rst', 'md')
+    except ImportError:
+        pass
+
+
 keywords = [
     'configuration', 'configuration-managment',
     'service', 'microservice',
@@ -15,10 +22,10 @@ classifiers = [
 
 setup(
     name='service_utils',
-    version='0.1.4b',
+    version='0.1.5b',
     description='Python Service Utilities',
     long_description=long_description,
-    long_description_content_type='text/markdown',
+    # long_description_content_type='text/markdown',
     author='Ivan Deylid',
     author_email='ivanov.dale@gmail.com',
     url='https://www.github.com/sid1057/service_utils/',
@@ -30,4 +37,5 @@ setup(
     keywords=keywords,
     platforms=['linux'],
     python_requires='>=3.4.0',
+    install_requires=['pypandoc'],
     classifiers=classifiers)

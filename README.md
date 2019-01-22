@@ -1,8 +1,10 @@
 # service_utils
 
-[![Build Status](https://travis-ci.com/Sid1057/service_utils.svg?branch=master)](https://travis-ci.com/Sid1057/service_utils)
+-A simple python package for quick and easy microservices logging and configuration.
 
-A simple python package for quick and easy microservices logging and configuration.
+[![Build Status](https://travis-ci.com/Sid1057/service_utils.svg?branch=master)](https://travis-ci.com/Sid1057/service_utils)
+[![Version](https://img.shields.io/pypi/v/service_utils.svg)](https://pypi.org/project/service_utils/)
+[![LICENSE](https://img.shields.io/github/license/sid1057/service_utils.svg)]()
 
 ## Overview
 
