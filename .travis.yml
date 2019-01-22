@@ -5,6 +5,10 @@ python:
     - "3.5"
     - "3.6"
 
+before_install:
+    - sudo apt-get update
+    - sudo apt-get install pandoc
+
 install:
     - pip install -e .
 
