@@ -8,9 +8,14 @@ def kill_handler(frame, signal):
 
 
 service_utils = Service_utils(
-    '--config-key',
-    configuration_required=True,
-    configuration_default_path='path_to_default_config.ini',
+    keys_required={
+        '-c': Service_utils.Actions.read_configuration,
+        '-p': Service_utils.Actions.write_pid_in_file
+    },
+    keys_optional={
+    },
+    config_sections={
+    },
     signal_handlers={
         signal.SIGINT: 22,
         signal.SIGTERM: kill_handler
@@ -25,7 +30,7 @@ greeting = 'write msg'
 try:
     greeting = service_utils.get_configuration()['user']['greeting']
 except Exception:
-    print('Something thorw an exception')
+    print('Something thorw an exception in configuration reading.')
 
 while True:
     logging.debug(input(greeting + ' : '))
