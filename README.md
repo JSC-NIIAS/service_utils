@@ -32,7 +32,7 @@ The most important thing for working with this library is a configuration file. 
 #### Short answer
 ```python
     from service_utils import Service_utils
-    About
+
     service_utils = Service_utils(
         '--config-key',
         configuration_required=True)

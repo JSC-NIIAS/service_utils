@@ -48,8 +48,8 @@ class Service_utils:
                     print('config is not required but it exist')
             else:
                 if self.__args[configuration_key] is None:
-                    print('config is required but it doesn\'t exist')
-                    raise BaseException
+                    raise BaseException(
+                        'config is required but it doesn\'t exist')
                 else:
                     configuration_path = self.__args[configuration_key]
 
@@ -57,11 +57,9 @@ class Service_utils:
             configuration = configparser.ConfigParser()
             configuration.read(configuration_path)
 
-            if list(configuration.keys()) == ['DEFAULT']:
-                print('Bad config.')
-                raise BaseException
-            else:
-                print('Good config.')
+            # TODO
+            # if list(configuration.keys()) == ['DEFAULT']:
+            #     raise BaseException('Bad config.')
 
             self.__configuration = configuration
             self.__write_pid()
@@ -138,7 +136,7 @@ class Service_utils:
                         lambda *args, **kwargs: action(*args, **kwargs))
                 # TODO change exception types and messages
                 else:
-                    raise BaseException
+                    raise BaseException('type of signal handler is unknown')
 
     instance = None
 

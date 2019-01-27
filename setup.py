@@ -22,7 +22,7 @@ classifiers = [
 
 setup(
     name='service_utils',
-    version='0.1.6',
+    version='0.1.7',
     description='Python Service Utilities',
     long_description=long_description,
     # long_description_content_type='text/markdown',
@@ -37,5 +37,5 @@ setup(
     keywords=keywords,
     platforms=['linux'],
     python_requires='>=3.4.0',
-    install_requires=['pypandoc'],
+    # install_requires=['pypandoc'],
     classifiers=classifiers)
