@@ -15,7 +15,11 @@ class Service_utils:
                 configuration_key,
                 configuration_required=False,
                 configuration_default_path=None,
+                signal_handlers=None,
                 description=''):
+
+            # save signal handlers
+            self.__signal_handlers = signal_handlers
 
             # initialize shell arguments parser
             parser = argparse.ArgumentParser(
@@ -25,29 +29,29 @@ class Service_utils:
                 metavar='path_to_configuration_file',
                 required=configuration_required,
                 help='Path to configuration file.')
-            args = parser.parse_args()
-            args = dict(args._get_kwargs())
+            self.__args = parser.parse_args()
+            self.__args = dict(self.__args._get_kwargs())
 
             configuration_key = re.sub('^-+', '', configuration_key)
             configuration_key = re.sub('-', '_', configuration_key)
             configuration_path = configuration_default_path
 
             if configuration_required is False:
-                if args[configuration_key] is None:
+                if self.__args[configuration_key] is None:
                     print('''
                         configuration_path is not exist and it\'s\
                         not required''')
                     print('''
                         configuration_path is set as default''')
                 else:
-                    configuration_path = args[configuration_key]
+                    configuration_path = self.__args[configuration_key]
                     print('config is not required but it exist')
             else:
-                if args[configuration_key] is None:
+                if self.__args[configuration_key] is None:
                     print('config is required but it doesn\'t exist')
                     raise BaseException
                 else:
-                    configuration_path = args[configuration_key]
+                    configuration_path = self.__args[configuration_key]
 
             print('configuration_path:', configuration_path)
             configuration = configparser.ConfigParser()
@@ -66,6 +70,9 @@ class Service_utils:
 
         def get_configuration(self):
             return self.__configuration
+
+        def get_args(self):
+            return self.__args
 
         def __write_pid(self):
             pid_file_path = self.__configuration['pid']['pid_file_path']
@@ -110,20 +117,32 @@ class Service_utils:
                 pass
 
         def __set_signal_handlers(self):
-            try:
-                signal_codes = self.__configuration['signal_termination']
-            except BaseException:
-                return
-            if signal_codes is None:
+            if self.__signal_handlers is None:
                 return
 
-            if signal_codes['SIGINT'] is not None:
-                signal.signal(
-                    signal.SIGINT,
-                    lambda signal, frame: sys.exit(signal_codes['SIGINT']))
+            # TODO the right methods for solve this problem using config
+            # check if it lambda(handler), string(config arg) or
+            # int(exit code)_
+            for sig, action in self.__signal_handlers.items():
+                assert isinstance(sig, type(signal.SIGINT))
+
+                if isinstance(action, int):
+                    exit_code = action
+                    signal.signal(
+                        sig,
+                        lambda signal, frame: sys.exit(exit_code))
+                # TODO improve types
+                elif isinstance(action, type(lambda x: x)):
+                    signal.signal(
+                        sig,
+                        lambda *args, **kwargs: action(*args, **kwargs))
+                # TODO change exception types and messages
+                else:
+                    raise BaseException
 
     instance = None
 
+    # singletone methods
     def __init__(self, *args, **kwargs):
         if Service_utils.instance is None:
             Service_utils.instance = Service_utils.__Service_utils(
@@ -134,3 +153,6 @@ class Service_utils:
 
     def get_configuration(self):
         return Service_utils.instance.get_configuration()
+
+    def get_args(self):
+        return Service_utils.instance.get_args()
