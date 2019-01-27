@@ -13,10 +13,11 @@ The most important thing for working with this library is a configuration file. 
 ## How to use it
 
 ### How to use it in your repository
-    1. Simple and good: `pip3 install service_utils`
-    2. Simple and not so good: just copy service_utils.py in your repository
-    3. Not so simple, but it allows you to have the last stable version of the library (if you really need): use .gitmodules file in your repository like this:
- 
+
+  1. Simple and good: `pip3 install service_utils`
+  2. Simple and not so good: just copy service_utils.py in your repository
+  3. Not so simple, but it allows you to have the last stable version of the library (if you really need): use .gitmodules file in your repository like this:
+
 .gitmodules:
 
 ```bash
@@ -42,7 +43,7 @@ The most important thing for working with this library is a configuration file. 
 #### Real answer
 Using your program as service mean that you will run it in some operation system with some (maybe empty) arguments like:
 ```bash
-python3 my_app.py -config config.ini --use-something --print-anything
+    python3 my_app.py -config config.ini --use-something --print-anything
 ```
 Using this package mean that you agree with my thinks about configuration in applications and about part of a code which do this stuff:
 1. Configuration should be simple as possible.
@@ -54,11 +55,11 @@ Using this package mean that you agree with my thinks about configuration in app
 
 Use 
 ```python
-service_utils = Service_utils(
-    '--config-key',  # this keyword would be expected when you run your application
-    configuration_required=True,  # if True - you have to run your application only with config-key
-    configuration_default_path='path_to_default_config.ini',  # if configuration is not required but default configuration exist - this path configuration to configuration file will be used
-    description='This is description of application. It would be show in `python3 app.py --help`')
+    service_utils = Service_utils(
+        '--config-key',  # this keyword would be expected when you run your application
+        configuration_required=True,  # if True - you have to run your application only with config-key
+        configuration_default_path='path_to_default_config.ini',  # if configuration is not required but default configuration exist - this path configuration to configuration file will be used
+        description='This is description of application. It would be show in `python3 app.py --help`')
 ```
 
 ### Also
