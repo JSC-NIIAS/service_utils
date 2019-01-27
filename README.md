@@ -2,6 +2,7 @@
 
 -A simple python package for quick and easy microservices logging and configuration.
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/819d6be760c04433a00dace98c674058)](https://app.codacy.com/app/Sid1057/service_utils?utm_source=github.com&utm_medium=referral&utm_content=Sid1057/service_utils&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.com/Sid1057/service_utils.svg?branch=master)](https://travis-ci.com/Sid1057/service_utils)
 [![Version](https://img.shields.io/pypi/v/service_utils.svg)](https://pypi.org/project/service_utils/)
 [![LICENSE](https://img.shields.io/github/license/sid1057/service_utils.svg)](https://github.com/Sid1057/service_utils/blob/master/LICENSE)
