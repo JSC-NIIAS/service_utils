@@ -1,5 +1,4 @@
 from service_utils import Service_utils
-import logging
 
 service_utils = Service_utils(
     '--config-key',
@@ -9,7 +8,7 @@ service_utils = Service_utils(
 greeting = 'write msg'
 try:
     greeting = service_utils.get_configuration()['user']['greeting']
-except:
-    pass
+except Exception:
+    print('Something thorw an exception')
 
 print(greeting)

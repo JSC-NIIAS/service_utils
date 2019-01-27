@@ -1,25 +1,23 @@
 # service_utils
-
--A simple python package for quick and easy microservices logging and configuration.
+A simple python package for quick and easy microservices logging and configuration.
 
 [![Build Status](https://travis-ci.com/Sid1057/service_utils.svg?branch=master)](https://travis-ci.com/Sid1057/service_utils)
 [![Version](https://img.shields.io/pypi/v/service_utils.svg)](https://pypi.org/project/service_utils/)
 [![LICENSE](https://img.shields.io/github/license/sid1057/service_utils.svg)](https://github.com/Sid1057/service_utils/blob/master/LICENSE)
 
 ## Overview
-
 This package was created for fast and easy import in your application functional which important as part of any service but not so fun for developing each time.
 The most important thing for working with this library is a configuration file. I especially use .ini format because it is human-readable, simple to parse in python and disallow using large multi-level configuration.
 
 ## How to use it
 
 ### How to use it in your repository
-
-1. Simple and good: `pip3 install service_utils`
-2. Simple and not so good: just copy service_utils.py in your repository
-3. Not so simple, but it allows you to have the last stable version of the library (if you really need): use .gitmodules file in your repository like this:
+ 1. Simple and good: `pip3 install service_utils`
+ 2. Simple and not so good: just copy service_utils.py in your repository
+ 3. Not so simple, but it allows you to have the last stable version of the library (if you really need): use .gitmodules file in your repository like this:
+ 
 ##### .gitmodules
-```
+```bash
 [submodule "service_utils"]
       path = modules/service_utils
       url = https://github.com/Sid1057/service_utils.git
@@ -28,7 +26,7 @@ The most important thing for working with this library is a configuration file. 
 
 ### How to use it in your code
 
-#### Short answer:
+#### Short answer
 ```python
 from service_utils import Service_utils
  About
@@ -39,8 +37,7 @@ service_utils = Service_utils(
 # done
 ```
 
-#### Real answer:
-
+#### Real answer
 Using your program as service mean that you will run it in some operation system with some (maybe empty) arguments like:
 ```bash
 python3 my_app.py -config config.ini --use-something --print-anything
@@ -62,5 +59,5 @@ service_utils = Service_utils(
     description='This is description of application. It would be show in `python3 app.py --help`')
 ```
 
-### P.S.:
+### P.S.
 README is a little bit crap, but I work on it.
