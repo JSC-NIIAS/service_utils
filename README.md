@@ -20,23 +20,23 @@ The most important thing for working with this library is a configuration file. 
 .gitmodules:
 
 ```bash
-[submodule "service_utils"]
-      path = modules/service_utils
-      url = https://github.com/Sid1057/service_utils.git
-      branch = release
+    [submodule "service_utils"]
+        path = modules/service_utils
+        url = https://github.com/Sid1057/service_utils.git
+        branch = release
 ```
 
 ### How to use it in your code
 
 #### Short answer
 ```python
-from service_utils import Service_utils
- About
-service_utils = Service_utils(
-    '--config-key',
-    configuration_required=True)
+    from service_utils import Service_utils
+    About
+    service_utils = Service_utils(
+        '--config-key',
+        configuration_required=True)
 
-# done
+    # done
 ```
 
 #### Real answer
