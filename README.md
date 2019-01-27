@@ -14,9 +14,9 @@ The most important thing for working with this library is a configuration file. 
 
 ### How to use it in your repository
 
-  1. Simple and good: `pip3 install service_utils`
-  2. Simple and not so good: just copy service_utils.py in your repository
-  3. Not so simple, but it allows you to have the last stable version of the library (if you really need): use .gitmodules file in your repository like this:
+    1. Simple and good: `pip3 install service_utils`
+    2. Simple and not so good: just copy service_utils.py in your repository
+    3. Not so simple, but it allows you to have the last stable version of the library (if you really need): use .gitmodules file in your repository like this:
 
 .gitmodules:
 
