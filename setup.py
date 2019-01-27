@@ -22,7 +22,7 @@ classifiers = [
 
 setup(
     name='service_utils',
-    version='0.1.5b',
+    version='0.1.6',
     description='Python Service Utilities',
     long_description=long_description,
     # long_description_content_type='text/markdown',
