@@ -12,7 +12,7 @@ before_install:
 install:
     - pip install -e .
 
-script: python test.py --c config.ini
+script: python test.py -c config.ini -p pidout
 
 after_failure: echo "Test failed"
 
