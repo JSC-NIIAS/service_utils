@@ -29,14 +29,20 @@ The most important thing for working with this library is a configuration file. 
 
 ### How to use it in your code
 
+Sorry, I'll do it later
+
 #### Short answer
 ```python
-    from service_utils import Service_utils
-
     service_utils = Service_utils(
-        '--config-key',
-        configuration_required=True)
-
+        keys_required={
+            '-c': Service_utils.Actions.read_configuration,
+            '-p': Service_utils.Actions.write_pid_in_file
+        },
+        keys_optional={
+        },
+        config_sections={
+        },
+        description='interactive example of service utils')
     # done
 ```
 
@@ -55,11 +61,24 @@ Using this package mean that you agree with my thinks about configuration in app
 
 Use 
 ```python
+    def kill_handler(frame, signal):
+        print('kill without -9 doesn\'t works here')
+
+
     service_utils = Service_utils(
-        '--config-key',  # this keyword would be expected when you run your application
-        configuration_required=True,  # if True - you have to run your application only with config-key
-        configuration_default_path='path_to_default_config.ini',  # if configuration is not required but default configuration exist - this path configuration to configuration file will be used
-        description='This is description of application. It would be show in `python3 app.py --help`')
+        keys_required={
+            '-c': Service_utils.Actions.read_configuration,
+            '-p': Service_utils.Actions.write_pid_in_file
+        },
+        keys_optional={
+        },
+        config_sections={
+        },
+        signal_handlers={
+            signal.SIGINT: 22,
+            signal.SIGTERM: kill_handler
+            },
+        description='interactive example of service utils')
 ```
 
 ### Also

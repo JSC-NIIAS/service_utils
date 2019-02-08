@@ -1,9 +1,15 @@
 from service_utils import Service_utils
 
 service_utils = Service_utils(
-    '--config-key',
-    configuration_required=True,
-    configuration_default_path='path_to_default_config.ini')
+    keys_required={
+        '-c': Service_utils.Actions.read_configuration,
+        '-p': Service_utils.Actions.write_pid_in_file
+    },
+    keys_optional={
+    },
+    config_sections={
+    },
+    description='interactive example of service utils')
 
 greeting = 'write msg'
 try:
