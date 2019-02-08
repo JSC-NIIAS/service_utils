@@ -7,14 +7,12 @@ def kill_handler(frame, signal):
     print('kill without -9 doesn\'t works here')
 
 
-service_utils = Service_utils(
+service = Service_utils(
     keys_required={
-        '-c': Service_utils.Actions.read_configuration,
         '-p': Service_utils.Actions.write_pid_in_file
     },
     keys_optional={
-    },
-    config_sections={
+        '-c': Service_utils.Actions.read_configuration,
     },
     signal_handlers={
         signal.SIGINT: 22,
@@ -22,15 +20,18 @@ service_utils = Service_utils(
         },
     description='interactive example of service utils')
 
-print('service_utils initialized')
-print('configuration:\n{}'.format(service_utils.get_configuration()))
-print('args:\n{}'.format(service_utils.get_args()))
+print('service start')
+print('configuration:\n{}'.format(service.get_configuration()))
+print('args:\n{}'.format(service.get_args()))
 
 greeting = 'write msg'
 try:
-    greeting = service_utils.get_configuration()['user']['greeting']
+    greeting = service.get_configuration()['user']['greeting']
 except Exception:
     print('Something thorw an exception in configuration reading.')
+
+print(service.get_configuration())
+print(service.get_args())
 
 while True:
     logging.debug(input(greeting + ' : '))

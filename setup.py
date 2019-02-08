@@ -30,7 +30,7 @@ setup(
     author_email='ivanov.dale@gmail.com',
     url='https://www.github.com/sid1057/service_utils/',
     packages=['service_utils'],
-    package_data={'': ['README.md']},
+    package_data={'': ['README.rst']},
     include_package_data=True,
     data_files=['README.md'],
     license='MIT',

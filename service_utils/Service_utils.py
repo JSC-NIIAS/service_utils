@@ -10,18 +10,26 @@ from enum import Enum
 
 
 class Service_utils:
+    ''
     class Actions(Enum):
+        '''
+            Actions:
+                1. read configuration (path_to_config: str)
+                2. save pid of application process in file (pidout_file: str)
+                3. create logger (path to stdout file: str)
+                4. configure exits (-f) #TODO
+        '''  #TODO
         read_configuration = 1
         write_pid_in_file = 2
-        create_logger = 3  # TODO
-        handle_signals = 4  # TODO
+        create_logger = 3
+        # handle_signals = 4 
+        configure_exits = 5 
 
     class __Service_utils:
         def __init__(
                 self,
                 keys_required={},
                 keys_optional={},
-                config_sections={},
                 signal_handlers=None,
                 description=''):
 
@@ -30,6 +38,9 @@ class Service_utils:
                 description=description)
             # save signal handlers
             self.__signal_handlers = signal_handlers
+
+            # set default values for service variables
+            self.__configuration = None
 
             # append required keys
             for key, action in keys_required.items():
@@ -70,23 +81,6 @@ class Service_utils:
             return key
                 
         def __create_configuration(self, configuration_path, required):
-#            if required is False:
-#                if self.__args[configuration_key] is None:
-#                    print('''
-#                        configuration_path is not exist and it\'s\
-#                        not required''')
-#                    print('''
-#                        configuration_path is set as default''')
-#                else:
-#                    configuration_path = self.__args[configuration_key]
-#                    print('config is not required but it exist')
-#            else:
-#                if self.__args[configuration_key] is None:
-#                    raise BaseException(
-#                        'config is required but it doesn\'t exist')
-#                else:
-#                    configuration_path = self.__args[configuration_key]
-
             print('configuration_path:', configuration_path)
             configuration = configparser.ConfigParser()
             configuration.read(configuration_path)
@@ -104,7 +98,7 @@ class Service_utils:
         def get_args(self):
             return self.__args
 
-        def __configure_pid(self, pid_file_path):
+        def __configure_pid(self, pid_file_path, suffix=''):
 #            try:
 #                self.__configuration['pid']
 #            except KeyError:
@@ -122,8 +116,11 @@ class Service_utils:
                 os.makedirs(pid_file_folder)
                 print('{} directory made'.format(pid_file_folder))
 
-            if pid_file_path[-4:] != '.pid':
-                pid_file_path = pid_file_path + '.pid'
+            if len(suffix) != 0:
+                if len(pid_file_path) < len(suffix):
+                    pid_file_path = pid_file_path + '.pid'
+                elif pid_file_path[-4:] != '.pid':
+                    pid_file_path = pid_file_path + '.pid'
 
             self.__write_pid(pid_file_path)
 
@@ -190,7 +187,11 @@ class Service_utils:
         return getattr(self.instance, name)
 
     def get_configuration(self):
-        return Service_utils.instance.get_configuration()
+        if Service_utils.instance.get_configuration() is None:
+            return None
+        return dict([
+            (i, dict(j.items()))
+            for i, j in Service_utils.instance.get_configuration().items()])
 
     def get_args(self):
         return Service_utils.instance.get_args()
