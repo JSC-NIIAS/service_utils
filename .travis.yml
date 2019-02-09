@@ -1,13 +1,14 @@
 language: python
 
 python:
-    - "3.4"
     - "3.5"
     - "3.6"
+    - "3.7"
 
 before_install:
     - sudo apt-get update
     - sudo apt-get install pandoc
+    - pip3 install psutil
 
 install:
     - pip install -e .

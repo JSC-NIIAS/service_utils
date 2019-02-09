@@ -30,3 +30,6 @@ except Exception:
 
 print(service.get_configuration())
 print(service.get_args())
+
+while True:
+    logging.debug(input(greeting + ' : '))
