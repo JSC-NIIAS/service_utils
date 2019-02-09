@@ -9,16 +9,14 @@ def kill_handler(frame, signal):
 
 service = Service_utils(
     keys_required={
-        '-p': Service_utils.Actions.write_pid_in_file
+        '-p': None
     },
     keys_optional={
-        '-c': Service_utils.Actions.read_configuration,
+        '-c': None
     },
-    signal_handlers={
-        signal.SIGINT: 22,
-        signal.SIGTERM: kill_handler
-        },
     description='interactive example of service utils')
+
+service.start()
 
 print('service start')
 print('configuration:\n{}'.format(service.get_configuration()))
@@ -32,6 +30,3 @@ except Exception:
 
 print(service.get_configuration())
 print(service.get_args())
-
-while True:
-    logging.debug(input(greeting + ' : '))

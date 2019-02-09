@@ -1,20 +1,32 @@
 from service_utils import Service_utils
+import logging
+import signal
 
-service_utils = Service_utils(
+
+def kill_handler(frame, signal):
+    print('kill without -9 doesn\'t works here')
+
+
+service = Service_utils(
     keys_required={
-        '-c': Service_utils.Actions.read_configuration,
-        '-p': Service_utils.Actions.write_pid_in_file
+        '-p': None
     },
     keys_optional={
-    },
-    config_sections={
+        '-c': None
     },
     description='interactive example of service utils')
 
+service.start()
+
+print('service start')
+print('configuration:\n{}'.format(service.get_configuration()))
+print('args:\n{}'.format(service.get_args()))
+
 greeting = 'write msg'
 try:
-    greeting = service_utils.get_configuration()['user']['greeting']
+    greeting = service.get_configuration()['user']['greeting']
 except Exception:
-    print('Something thorw an exception')
+    print('Something thorw an exception in configuration reading.')
 
-print(greeting)
+print(service.get_configuration())
+print(service.get_args())
