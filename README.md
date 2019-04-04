@@ -83,3 +83,14 @@ Use
 
 ### Also
 README is a little bit crap, but I work on it.
+
+Sections TODO
+- [ ] environment/containers
+- [ ] CI/UI
+- [ ] logging
+- [ ] monitoring
+- [ ] registration and location
+- [ ] communications
+- [ ] data base
+- [ ] secourity
+- [ ] scaling
